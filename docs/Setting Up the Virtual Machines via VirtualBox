@@ -1,0 +1,36 @@
+## Overview
+
+This document explains how VirtualBox was installed and configured to host the virtual machines used in the home SOC lab.
+
+The lab uses VirtualBox to isolate the vulnerable target machine from the host operating system while allowing secure communication between the systems.
+
+
+## Lab Architecture
+
+| Component | Purpose |
+|----------|---------|
+| VirtualBox | Virtualization Platform |
+| Windows 11 Host | Runs Splunk Enterprise |
+| Metasploitable3 | Vulnerable Linux Target |
+|Windows 10 VM | Runs SplunkUniversalforwarder |
+
+
+## Step 1 - Install VirtualBox
+
+Download the latest version of Oracle VirtualBox.
+
+Run the installer using the default installation options.
+
+During installation, VirtualBox installs the required networking drivers.
+
+> **Screenshot:** VirtualBox Installer
+
+
+## Step 2 - Launch VirtualBox
+
+After installation, open VirtualBox.
+
+The VirtualBox Manager should display an empty machine list.
+
+> **Screenshot:** VirtualBox Manager
+
