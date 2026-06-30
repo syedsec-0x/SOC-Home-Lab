@@ -97,9 +97,108 @@ A successful response confirms network connectivity between the host and the vir
 
 ---
 
-## Conclusion
+Configuring rsyslog on Metasploitable3
+# Configuring rsyslog to Forward Logs to Splunk Enterprise
 
-VirtualBox was successfully installed, and Metasploitable3 was imported and configured with dual network adapters.
+## Overview
+
+The latest version of Splunk Universal Forwarder is not compatible with Ubuntu 14.04 due to library compatibility requirements. Since Metasploitable3 is based on Ubuntu 14.04, rsyslog was used to forward system logs to the Windows host running Splunk Enterprise.
+
+This configuration enables centralized log collection from the Linux target into Splunk for monitoring and analysis.
+
+---
+
+## Lab Environment
+
+| Component | Details |
+|----------|---------|
+| Source System | Metasploitable3 (Ubuntu 14.04) |
+| Log Forwarder | rsyslog |
+| Destination | Splunk Enterprise |
+| Host IP Address | 192.168.56.1 |
+| Protocol | UDP |
+| Port | 5140 |
+
+---
+
+## Network Verification
+
+Before configuring rsyslog, verify that the Windows host is reachable.
+
+```bash
+ping 192.168.56.1
+```
+
+Successful replies confirm that the virtual machine can communicate with the Splunk server.
+
+> **Screenshot:** Successful ping to Windows Host
+
+---
+
+## Editing the rsyslog Configuration
+
+Open the rsyslog configuration file.
+
+```bash
+sudo nano /etc/rsyslog.conf
+```
+
+Scroll to the bottom of the file and add the following line.
+
+```text
+*.* @192.168.56.1:5140
+```
+
+This forwards all system logs to the Splunk Enterprise server using UDP on port 5140.
+
+> **Screenshot:** rsyslog.conf Configuration
+
+---
+
+## Restart the rsyslog Service
+
+Apply the configuration changes.
+
+```bash
+sudo service rsyslog restart
+```
+
+Verify that the service is running.
+
+```bash
+sudo service rsyslog status
+```
+
+> **Screenshot:** rsyslog Service Status
+
+---
+
+## Generate a Test Log
+
+Generate a custom syslog message.
+
+```bash
+logger "Hello Splunk"
+```
+
+This creates a new log entry that should immediately be forwarded to Splunk.
+
+> **Screenshot:** Logger Command
+
+---
+
+## Verify Log Collection in Splunk
+
+Log in to Splunk Enterprise and search for the generated message.
+
+```spl
+index=main "Hello Splunk"
+```
+
+If the message appears in the search results, the configuration is working correctly.
+
+> **Screenshot:** Log Successfully Received in Splunk
+
 
 
 
