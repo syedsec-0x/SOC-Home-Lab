@@ -133,9 +133,7 @@ Successful replies confirm that the virtual machine can communicate with the Spl
 
 > **Screenshot:** Successful ping to Windows Host
 
----
-
-## Editing the rsyslog Configuration
+---<img width="640" height="307" alt="ping" src="https://github.com/user-attachments/assets/7d2efa92-55dc-4fbd-9498-a906be254136" />
 
 Open the rsyslog configuration file.
 
@@ -150,8 +148,8 @@ Scroll to the bottom of the file and add the following line.
 ```
 
 This forwards all system logs to the Splunk Enterprise server using UDP on port 5140.
+<img width="640" height="480" alt="rsyslog conf" src="https://github.com/user-attachments/assets/87e6da1e-9b45-495f-b751-39fd8aeacd6a" />
 
-> **Screenshot:** rsyslog.conf Configuration
 
 ---
 
@@ -169,8 +167,6 @@ Verify that the service is running.
 sudo service rsyslog status
 ```
 
-> **Screenshot:** rsyslog Service Status
-
 ---
 
 ## Generate a Test Log
@@ -184,6 +180,8 @@ logger "Hello Splunk"
 This creates a new log entry that should immediately be forwarded to Splunk.
 
 > **Screenshot:** Logger Command
+><img width="1919" height="868" alt="Screenshot 2026-07-01 145800" src="https://github.com/user-attachments/assets/87ba1b30-bb56-4103-bdde-aa505ea3aa62" />
+
 
 ---
 
@@ -198,6 +196,9 @@ index=main "Hello Splunk"
 If the message appears in the search results, the configuration is working correctly.
 
 > **Screenshot:** Log Successfully Received in Splunk
+>
+> <img width="1919" height="878" alt="Screenshot 2026-07-01 150052" src="https://github.com/user-attachments/assets/ef202531-3ca5-4e78-b3b8-4573f77b972d" />
+
 
 
 
