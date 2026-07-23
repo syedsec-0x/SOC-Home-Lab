@@ -36,7 +36,9 @@ Login using valid credentials.
 Username: vagrant
 Password: vagrant
 ```
-![Uploading ftp.png…]()
+
+<img width="622" height="330" alt="ftp" src="https://github.com/user-attachments/assets/39671c1d-f33d-439d-b2f1-1089b7c0754d" />
+
 
 ---
 
